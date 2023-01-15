@@ -1,13 +1,13 @@
+
 * {
   margin: 0;
   padding: 0;
+  font-family: 'Mukta', sans-serif;
 }
 
 .head-main {
-  display: flex;
-  align-items: center;
-  justify-content: center;
   margin-top: 2em;
+  margin-left: 2em;
 }
 
 .list {
@@ -29,92 +29,73 @@
 .container {
   height: 100vh;
 }
-/* .side-nav,
-.nav-menu {
-  height: 100%;
-}
-.side-nav .nav-menu {
-  list-style: none;
-  padding: 40px 0;
-  width: 200px;
-  background-color: #3498db;
-}
-.side-nav .nav-item {
-  position: relative;
-  padding: 10px 20px;
-}
-.nav-item.active {
-  background-color: #fff;
-  box-shadow: 0px -3px rgba(0, 0, 0, 0.2), 0px 3px rgba(0, 0, 0, 0.2);
-}
-.nav-item.active a {
-  color: #2980b9;
-}
-.nav-item a {
-  text-decoration: none;
-  color: #fff;
-}
-.menu-text {
-  padding: 0 20px;
-}
-.side-nav .nav-item.active::before {
-  content: "";
-  position: absolute;
-  background-color: transparent;
-  bottom: 100%;
-  right: 0;
-  height: 150%;
-  width: 20px;
-  border-bottom-right-radius: 25px;
-  box-shadow: 0 20px 0 0 #fff;
-}
-.side-nav .nav-item.active::after {
-  content: "";
-  position: absolute;
-  background-color: transparent;
-  top: 100%;
-  right: 0;
-  height: 150%;
-  width: 20px;
-  border-top-right-radius: 25px;
-  box-shadow: 0 -20px 0 0 #fff;
-} */
-
 
 
 /* Cards CSS */
-.cards{
+.cards {
   display: flex;
   justify-content: center;
   align-items: center;
-  /* position: absolute;
-  top: 10rem; */
 }
 
-.cards div{
-  margin:0 0.5em;
+.cards div {
+  margin: 0 0.5em;
 }
 
-.top5{
+.top5 {
+  margin-top: 2em;
   margin-left: 2rem;
   margin-bottom: 2rem;
 }
 
-.main2{
-  padding: 4em  0;
+.main2 {
+  padding-top: 2em;
   display: flex;
-  justify-content: space-evenly;
+}
+
+.main2 div {
+  padding-left: 1em;
+  padding-right: 4em;
+}
+
+/* List */
+.box {
+  display: flex;
   align-items: center;
+  justify-content: space-evenly;
 }
-/* .navbar{
-  background-color: black;
+
+.bx {
+  width: -webkit-fill-available;
 }
-.navbar ul{
+
+.name {
+  text-indent: 2em;
+}
+
+.navDiv {
+  margin-top: 1em;
+  /* margin-left:; */
+}
+
+.mcap {
+  position: relative;
+  right: 1em;
+}
+
+.main2 p {
+  font-size: 1.3em;
+}
+
+.imgname {
   display: flex;
 }
-.navbar ul li{
-  list-style: none;
+
+.coinname{
+  margin-left: 0.5em;
+  margin-top: 0.5em;
 }
-.navbar li a{
-  text-decoration: none;
-} */
+
+.coinsymb{
+  margin-top: 1em;
+}

@@ -1,58 +1,90 @@
-import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import "../App.css";
 import CoinList from './CoinList';
-
 
 const Home = () => {
 
     const [coins, setCoins] = useState([]);
     const [market, setMarket] = useState([]);
-
+    function Convert(x){
+    
+        if(typeof(x)==='string'){
+            x=Number(x);
+        }
+        if(Number(x)>1000000000){
+            return "$"+ Number(x/1000000000).toFixed(2) + "B";
+        }
+        if(Number(x)>1000000){
+                return "$"+Number(x/1000000).toFixed(2) + "M";
+            }  
+            
+            
+        if(Number(x)>1000){
+            return "$"+Number(x/1000).toFixed(2) + "K";
+        }
+        else{
+            return "$"+Number(x).toFixed(2)
+        }   
+    }
 
     useEffect(() => {
-        axios.get('https://api.coingecko.com/api/v3/global')
-            .then(res => {
-                setMarket(res.data)
-            })
-            .catch(error => console.log(error))
+        const options = {
+            method: 'GET',
+            headers: {
+                'X-RapidAPI-Key': 'bd58c350d0mshdaf85a086a7e738p1bd6bejsn153d5e666e70',
+                'X-RapidAPI-Host': 'coinranking1.p.rapidapi.com'
+            }
+        };
+
+        fetch('https://coinranking1.p.rapidapi.com/stats?', options)
+            .then(response => response.json())
+            .then(response => { setMarket(response.data) })
+            .catch(err => console.error(err));
     })
 
     useEffect(() => {
-        axios.get('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=5&page=1&sparkline=false')
-            .then(res => {
-                setCoins(res.data)
-            })
-            .catch(error => console.log(error))
-    })
+        const options = {
+            method: 'GET',
+            headers: {
+                'X-RapidAPI-Key': 'bd58c350d0mshdaf85a086a7e738p1bd6bejsn153d5e666e70',
+                'X-RapidAPI-Host': 'coinranking1.p.rapidapi.com'
+            }
+        };
+
+        fetch('https://coinranking1.p.rapidapi.com/coins?', options)
+            .then(response => response.json())
+            .then(response => { setCoins(response?.data.coins) })
+            .catch(err => console.error(err));
+    }, [])
+
     return (
         <>
             <div className='head-main'>
-                <h1 >CryptoCurrency Tracker</h1>
+                <h1 >Global Stats</h1>
             </div>
 
             <div className='main2'>
 
                 <div className='first'>
                     <div>
-                    <h4>Active CryptoCurrencies</h4>
-                    <p>{market.data?.active_cryptocurrencies}</p>
+                        <h4>Active CryptoCurrencies</h4>
+                        <p>{market?.totalCoins}</p>
                     </div>
-                <div>
-                    <h4>Total Markets</h4>
-                    <p>{market.data?.markets}</p>
-                </div>
+                    <div>
+                        <h4>Total Markets</h4>
+                        <p>{market?.totalMarkets}</p>
+                    </div>
                 </div>
 
                 <div className='second'>
                     <div>
-                        <h4>HELLO</h4>
-                        <p>87567</p>
+                        <h4>Total MarketCap</h4>
+                        <p>{Convert(market?.totalMarketCap)}</p>
                     </div>
 
                     <div>
-                        <h4>World</h4>
-                        <p>958523</p>
+                        <h4>Total 24hVolume</h4>
+                        <p>{Convert(market?.total24hVolume)}</p>
                     </div>
                 </div>
             </div>
@@ -60,14 +92,14 @@ const Home = () => {
                 <h1>Top 5 CryptoCurrencies</h1>
             </div>
             <div className='cards'>
-                {coins.map(coin => {
+                {coins?.filter((item, id) => id <= 5).map(coin => {
                     return (
-                        <CoinList market_cap_rank={coin.market_cap_rank}
+                        <CoinList market_cap_rank={coin.rank}
                             name={coin.name}
-                            image={coin.image}
+                            image={coin.iconUrl}
                             symbol={coin.symbol}
-                            volume={coin.market_cap}
-                            price={coin.current_price}
+                            volume={coin.marketCap}
+                            price={coin.price}
                         />
                     )
                 })}

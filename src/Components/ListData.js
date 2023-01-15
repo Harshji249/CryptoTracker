@@ -3,6 +3,26 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios';
 
 const ListData = () => {
+    function Convert(x){
+    
+        if(typeof(x)==='string'){
+            x=Number(x);
+        }
+        if(Number(x)>1000000000){
+            return "$"+ Number(x/1000000000).toFixed(2) + "B";
+        }
+        if(Number(x)>1000000){
+                return "$"+Number(x/1000000).toFixed(2) + "M";
+            }  
+            
+            
+        if(Number(x)>1000){
+            return "$"+Number(x/1000).toFixed(2) + "K";
+        }
+        else{
+            return "$"+Number(x).toFixed(2)
+        }   
+    }
 
     const [list, setList] = useState([]);
     useEffect(() => {
@@ -17,13 +37,12 @@ const ListData = () => {
             <div className="list">
                 <table className="table">
                     <thead>
-                        <tr>
-                            <th>Rank</th>
-                            <th>Image</th>
-                            <th>Symbol</th>
-                            <th>Name</th>
-                            <th>Current Price</th>
-                            <th>Total Volume</th>
+                        <tr className='box'>
+                            <th className='bx'>Rank</th>
+                            <th className='bx'>Symbol</th>
+                            <th className='bx name'>Name</th>
+                            <th className='bx'>Current Price</th>
+                            <th className='bx'>Total Volume</th>
                         </tr>
                     </thead>
                 </table>
@@ -35,14 +54,14 @@ const ListData = () => {
                         <div className='list'>
                             <table className="table">
                                 <tbody>
-                                    <tr>
-                                        <th scope="row">{lists?.market_cap_rank}</th>
-                                        <img className='images' 
-                                        src={lists?.image} alt="" />
-                                        <td>{lists?.symbol}</td>
-                                        <td>{lists?.name}</td>
-                                        <td>${lists?.current_price}</td>
-                                        <td>${lists?.market_cap}</td>
+                                    <tr className='box'>
+                                        <th className='bx' scope="row">{lists?.market_cap_rank}</th>
+                                        <img className='images'
+                                            src={lists?.image} alt="" />
+                                        <td className='bx'>{lists?.symbol}</td>
+                                        <td className='bx'>{lists?.name}</td>
+                                        <td className='bx'>{Convert(lists?.current_price)}</td>
+                                        <td className='bx'>{Convert(lists?.market_cap)}</td>
                                     </tr>
                                 </tbody>
                             </table>
