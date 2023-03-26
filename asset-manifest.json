@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/CryptoTracker/static/css/main.0b1f365e.css",
-    "main.js": "/CryptoTracker/static/js/main.1e3ccafb.js",
-    "static/js/787.b8fa26a9.chunk.js": "/CryptoTracker/static/js/787.b8fa26a9.chunk.js",
-    "index.html": "/CryptoTracker/index.html",
-    "main.0b1f365e.css.map": "/CryptoTracker/static/css/main.0b1f365e.css.map",
-    "main.1e3ccafb.js.map": "/CryptoTracker/static/js/main.1e3ccafb.js.map",
-    "787.b8fa26a9.chunk.js.map": "/CryptoTracker/static/js/787.b8fa26a9.chunk.js.map"
+    "main.css": "/Risehigher-assignment/static/css/main.24ed00d8.css",
+    "main.js": "/Risehigher-assignment/static/js/main.8af5a5f6.js",
+    "static/js/787.b8fa26a9.chunk.js": "/Risehigher-assignment/static/js/787.b8fa26a9.chunk.js",
+    "index.html": "/Risehigher-assignment/index.html",
+    "main.24ed00d8.css.map": "/Risehigher-assignment/static/css/main.24ed00d8.css.map",
+    "main.8af5a5f6.js.map": "/Risehigher-assignment/static/js/main.8af5a5f6.js.map",
+    "787.b8fa26a9.chunk.js.map": "/Risehigher-assignment/static/js/787.b8fa26a9.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.0b1f365e.css",
-    "static/js/main.1e3ccafb.js"
+    "static/css/main.24ed00d8.css",
+    "static/js/main.8af5a5f6.js"
   ]
 }
