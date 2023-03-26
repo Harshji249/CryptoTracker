@@ -99,3 +99,14 @@
 .coinsymb{
   margin-top: 1em;
 }
+
+.next{
+  position: relative;
+  left: 1300px;
+  bottom: 10px;
+}
+.prev{
+  position: relative;
+  left: 10px;
+  bottom: 10px;
+}

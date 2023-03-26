@@ -2,7 +2,10 @@ import React, { useEffect, useState } from 'react'
 import "../App.css";
 import CoinList from './CoinList';
 
+
 const Home = () => {
+
+    
 
     const [coins, setCoins] = useState([]);
     const [market, setMarket] = useState([]);

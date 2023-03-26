@@ -20,9 +20,6 @@ const Navibar = () => {
                 <li className="nav-item">
                   <Link className="nav-link active" to="/Cryptocurrencies">Cryptocurrencies</Link>
                 </li>
-                <li className="nav-item">
-                  <Link className="nav-link active" to="#">News</Link>
-                </li>
               </ul>
             </div>
           </div>

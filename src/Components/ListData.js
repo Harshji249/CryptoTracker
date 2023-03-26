@@ -1,37 +1,52 @@
+import axios from "axios";
 import React, { useState, useEffect } from 'react'
-
-import axios from 'axios';
+import "../App.css"
+// import axios from 'axios';
 
 const ListData = () => {
-    function Convert(x){
-    
-        if(typeof(x)==='string'){
-            x=Number(x);
-        }
-        if(Number(x)>1000000000){
-            return "$"+ Number(x/1000000000).toFixed(2) + "B";
-        }
-        if(Number(x)>1000000){
-                return "$"+Number(x/1000000).toFixed(2) + "M";
-            }  
-            
-            
-        if(Number(x)>1000){
-            return "$"+Number(x/1000).toFixed(2) + "K";
-        }
-        else{
-            return "$"+Number(x).toFixed(2)
-        }   
-    }
-
+    const [page, setPage] = useState(1);
     const [list, setList] = useState([]);
+    function Convert(x) {
+
+        if (typeof (x) === 'string') {
+            x = Number(x);
+        }
+        if (Number(x) > 1000000000) {
+            return "$" + Number(x / 1000000000).toFixed(2) + "B";
+        }
+        if (Number(x) > 1000000) {
+            return "$" + Number(x / 1000000).toFixed(2) + "M";
+        }
+
+
+        if (Number(x) > 1000) {
+            return "$" + Number(x / 1000).toFixed(2) + "K";
+        }
+        else {
+            return "$" + Number(x).toFixed(2)
+        }
+    }
+    const handlePrevClick = () => {
+        setPage(page - 1);
+        console.log("Previous was clicked");
+        axios.get(`https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=20&page=${page}&sparkline=false` ,{ crossDomain: true } )
+            .then(res => { setList(res.data) })
+            .catch(err => console.log(err));
+    }
+    const handleNextClick = () => {
+        setPage(page + 1);
+        console.log("Next was clicked");
+        axios.get(`https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=20&page=${page}&sparkline=false`,{ crossDomain: true } )
+            .then(res => { setList(res.data) })
+            .catch(err => console.log(err));
+    }
     useEffect(() => {
-        axios.get('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false')
+        axios.get(`https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=20&page=${page}&sparkline=false`, { crossDomain: true } )
             .then(res => {
                 setList(res.data)
             })
             .catch(error => console.log(error))
-    })
+    }, [page])
     return (
         <>
             <div className="list">
@@ -49,7 +64,7 @@ const ListData = () => {
             </div>
 
             {
-                list.map(lists => {
+                list?.map(lists => {
                     return (
                         <div className='list'>
                             <table className="table">
@@ -69,6 +84,8 @@ const ListData = () => {
                     )
                 })
             }
+            <button disabled={page <= 1} type="button" className="btn btn-dark prev" onClick={handlePrevClick}> &larr; Previous</button>
+            <button type="button" className="btn btn-dark next" onClick={handleNextClick}>Next &rarr; </button>
 
         </>
     )
